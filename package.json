@@ -1,0 +1,19 @@
+{
+  "name": "iris",
+  "version": "1.0.0",
+  "description": "Slack microservice",
+  "main": "server/service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donkeykong91/NodeJS---Slackbot-Microservice.git"
+  },
+  "author": "Daryl Occ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/donkeykong91/NodeJS---Slackbot-Microservice/issues"
+  },
+  "homepage": "https://github.com/donkeykong91/NodeJS---Slackbot-Microservice#readme"
+}
