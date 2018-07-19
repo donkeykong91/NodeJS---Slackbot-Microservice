@@ -1,11 +1,13 @@
-const { RTMClient } = require('@slack/client');
+'use strict';
 
 
-// An access token (from your Slack app or custom integration - usually xoxb)
-const token = process.env.SLACK_TOKEN;    
+const { RTMClient } = require('@slack/client');   
 
 
-// The client is initialized and then started to get an active connection to the platform
-const rtm = new RTMClient(token);
+module.exports.init = function slackClient(token, logLevel) {
 
-rtm.start();    
+    const rtm = new RTMClient(token, {logLevel: "debug"});
+
+    return rtm;
+
+}
