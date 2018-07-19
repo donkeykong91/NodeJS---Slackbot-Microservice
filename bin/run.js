@@ -15,6 +15,11 @@ const slackToken = process.env.SLACK_TOKEN;
 const slackLogLevel = "debug";
 
 
+const rtm = slackClient(slackToken, slackLogLevel);
+
+rtm.start();
+
+
 server.listen(3000);
 
 server.on("listening", function() {
