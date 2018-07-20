@@ -11,6 +11,13 @@ function handleOnAuthenticated(rtmStartData) {
 }
 
 
+function handleOnMessage(message) {
+    
+    console.log(message);
+
+}
+
+
 function addAuthenticatedHandler(rtm, handler) {
 
     rtm.on("authenticated", handler);
@@ -23,6 +30,8 @@ module.exports.init = function slackClient(token, logLevel) {
     const rtm = new RtmClient(token, {logLevel: logLevel});
 
     addAuthenticatedHandler(rtm, handleOnAuthenticated);
+
+    rtm.on("message", handleOnMessage);
 
     return rtm;
 
