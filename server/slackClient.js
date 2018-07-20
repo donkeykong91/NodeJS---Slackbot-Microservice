@@ -1,7 +1,7 @@
 'use strict';
 
 
-const { RTMClient } = require('@slack/client');   
+const RtmClient = require('@slack/client').RTMClient;   
 
 
 function handleOnAuthenticated(rtmStartData) {
@@ -20,10 +20,13 @@ function addAuthenticatedHandler(rtm, handler) {
 
 module.exports.init = function slackClient(token, logLevel) {
 
-    const rtm = new RTMClient(token, {logLevel: logLevel});
+    const rtm = new RtmClient(token, {logLevel: logLevel});
 
     addAuthenticatedHandler(rtm, handleOnAuthenticated);
 
     return rtm;
 
 }
+
+
+module.exports.addAuthenticatedHandler = addAuthenticatedHandler;
