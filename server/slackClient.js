@@ -13,7 +13,7 @@ function handleOnAuthenticated(rtmStartData) {
 
 function addAuthenticatedHandler(rtm, handler) {
 
-    rtm.on(CLIENT_EVENTS.RTM.AUTHENTICATED, handler);
+    rtm.on("authenticated", handler);
 
 }
 
