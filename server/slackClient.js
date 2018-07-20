@@ -20,7 +20,7 @@ function addAuthenticatedHandler(rtm, handler) {
 
 module.exports.init = function slackClient(token, logLevel) {
 
-    const rtm = new RTMClient(token, {logLevel: "debug"});
+    const rtm = new RTMClient(token, {logLevel: logLevel});
 
     addAuthenticatedHandler(rtm, handleOnAuthenticated);
 
