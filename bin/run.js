@@ -12,7 +12,7 @@ const server = http.createServer(service);
 
 const slackToken = process.env.SLACK_TOKEN;
 
-const slackLogLevel = "verbose";
+const slackLogLevel = 'info';
 
 
 const rtm = slackClient.init(slackToken, slackLogLevel);
@@ -20,7 +20,12 @@ const rtm = slackClient.init(slackToken, slackLogLevel);
 rtm.start();
 
 
-server.listen(3000);
+slackClient.addAuthenticatedHandler(rtm, function () {
+
+    server.listen(3000);
+
+});
+
 
 server.on("listening", function() {
 
