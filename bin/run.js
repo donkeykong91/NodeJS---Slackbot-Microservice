@@ -15,7 +15,7 @@ const slackToken = process.env.SLACK_TOKEN;
 const slackLogLevel = "debug";
 
 
-const rtm = slackClient(slackToken, slackLogLevel);
+const rtm = slackClient.init(slackToken, slackLogLevel);
 
 rtm.start();
 
