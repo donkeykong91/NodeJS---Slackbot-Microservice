@@ -40,6 +40,8 @@ const RtmClient = require('@slack/client').RTMClient;
         return rtm;
 
     }
-}
 
-module.exports.addAuthenticatedHandler = addAuthenticatedHandler;
+
+    module.exports.addAuthenticatedHandler = addAuthenticatedHandler;
+
+}
