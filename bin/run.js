@@ -12,7 +12,7 @@ const server = http.createServer(service);
 
 const witToken = process.env.WIT_TOKEN;
 
-const witClient = require("..server/witClient")(witToken);
+const witClient = require("../server/witClient")(witToken);
 
 
 const slackToken = process.env.SLACK_TOKEN;
