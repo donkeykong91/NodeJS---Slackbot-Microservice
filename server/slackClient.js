@@ -31,6 +31,16 @@ const RtmClient = require('@slack/client').RTMClient;
 
                 return rtm.sendMessage("Sorry, I don't know what you are talkng about.", message.channel);
 
+            } else if (res.intent[0].value == "time" && res.location) {
+
+                return rtm.sendMessage(`I don't yet know the time in ${res.location[0].value}`, message.channel);
+
+            } else {
+
+                console.log(res);
+
+                return rtm.sendMessage("Sorry, I don't know what you are talking about.", message.channel);
+
             }
 
 
