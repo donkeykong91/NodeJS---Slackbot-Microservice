@@ -30,6 +30,47 @@ const RtmClient = require('@slack/client').RTMClient;
                 }
     
     
+                try {
+
+                    if (!res.intent || !res.intent[0] || !res.intent[0].value) {
+
+                        throw new Error("Could not extract intent");
+
+                    } 
+
+
+                    const intent = require("./intents/" + res.intent[0].value + "Intent");
+
+
+                    intent.process(res, function(error, response) {
+
+
+                        if (error) {
+
+                            console.log(error.message);
+
+                            return;
+
+                        }
+
+
+                        return rtm.sendMessage(response, message.channel);
+
+
+                    });
+
+
+                } catch(err) {
+
+                    console.log(err);
+
+                    console.log(res);
+
+                    rtm.sendMessage("Sorry, I don't know what you ware talkinga bout", message.channel);
+                    
+                }
+
+
                 if (!res.intent) {
     
                     return rtm.sendMessage("Sorry, I don't know what you are talkng about.", message.channel);
@@ -50,7 +91,7 @@ const RtmClient = require('@slack/client').RTMClient;
                 rtm.sendMessage("Sorry, I did not understand.", message.channel)
     
             });
-            
+
 
         }
 
