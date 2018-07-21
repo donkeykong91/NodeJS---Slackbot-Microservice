@@ -6,7 +6,7 @@ const request = require("superagent");
 
 function handleWitResponse (res) {
 
-    console.log(res);
+    return res.entities;
 
 }
 
