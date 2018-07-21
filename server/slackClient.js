@@ -15,38 +15,44 @@ const RtmClient = require('@slack/client').RTMClient;
 
 
     function handleOnMessage(message) {
-        
-        nlp.ask(message.text, function (err, res) {
-
-            if(err) {
-
-                console.log(err);
-
-                return;
-
-            }
 
 
-            if (!res.intent) {
+        if (message.text.toLowerCase().includes("iris")) {
 
-                return rtm.sendMessage("Sorry, I don't know what you are talkng about.", message.channel);
+            nlp.ask(message.text, function (err, res) {
 
-            } else if (res.intent[0].value == "time" && res.location) {
+                if(err) {
+    
+                    console.log(err);
+    
+                    return;
+    
+                }
+    
+    
+                if (!res.intent) {
+    
+                    return rtm.sendMessage("Sorry, I don't know what you are talkng about.", message.channel);
+    
+                } else if (res.intent[0].value == "time" && res.location) {
+    
+                    return rtm.sendMessage(`I don't yet know the time in ${res.location[0].value}`, message.channel);
+    
+                } else {
+    
+                    console.log(res);
+    
+                    return rtm.sendMessage("Sorry, I don't know what you are talking about.", message.channel);
+    
+                }
+    
+    
+                rtm.sendMessage("Sorry, I did not understand.", message.channel)
+    
+            });
+            
 
-                return rtm.sendMessage(`I don't yet know the time in ${res.location[0].value}`, message.channel);
-
-            } else {
-
-                console.log(res);
-
-                return rtm.sendMessage("Sorry, I don't know what you are talking about.", message.channel);
-
-            }
-
-
-            rtm.sendMessage("Sorry, I did not understand.", message.channel)
-
-        });
+        }
 
 
     }
