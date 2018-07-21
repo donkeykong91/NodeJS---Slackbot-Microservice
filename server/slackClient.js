@@ -16,9 +16,21 @@ const RtmClient = require('@slack/client').RTMClient;
 
     function handleOnMessage(message) {
         
-        nlp.ask(message.text);
+        nlp.ask(message.text, function (err, res) {
 
-        rtm.sendMessage("this is a test message", message.channel, )
+            if(err) {
+
+                console.log(err);
+
+                return;
+
+            }
+
+
+            rtm.sendMessage("Sorry, I did not understand.", message.channel)
+
+        });
+
 
     }
 
