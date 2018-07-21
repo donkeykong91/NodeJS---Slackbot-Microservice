@@ -27,6 +27,13 @@ const RtmClient = require('@slack/client').RTMClient;
             }
 
 
+            if (!res.intent) {
+
+                return rtm.sendMessage("Sorry, I don't know what you are talkng about.", message.channel);
+
+            }
+
+
             rtm.sendMessage("Sorry, I did not understand.", message.channel)
 
         });
