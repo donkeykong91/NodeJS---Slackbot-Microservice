@@ -4,6 +4,7 @@
 const RtmClient = require('@slack/client').RTMClient;   
 
 {let rtm = null;
+ let nlp = null;
 
 
     function handleOnAuthenticated(rtmStartData) {
@@ -15,7 +16,7 @@ const RtmClient = require('@slack/client').RTMClient;
 
     function handleOnMessage(message) {
         
-        console.log(message);
+        nlp.ask(message.text);
 
         rtm.sendMessage("this is a test message", message.channel, )
 
@@ -29,9 +30,11 @@ const RtmClient = require('@slack/client').RTMClient;
     }
 
 
-    module.exports.init = function slackClient(token, logLevel) {
+    module.exports.init = function slackClient(token, logLevel, nlpClient) {
 
         rtm = new RtmClient(token, {logLevel: logLevel});
+
+        nlp = nlpClient;
 
         addAuthenticatedHandler(rtm, handleOnAuthenticated);
 
