@@ -1,7 +1,10 @@
 'use strict'
 
 
-module.exports.process = function process(intentData, callback) {
+const superagentRequest = require("superagent");
+
+
+module.exports.process = async function process(intentData, callback) {
 
 
     if (intentData.intent[0].value !== "time") {
@@ -18,6 +21,38 @@ module.exports.process = function process(intentData, callback) {
     }
 
 
-    return callback(false, `I don't yet know the time in ${intentData.location[0].value}`);
+    {const location = intentData.location[0].value;
+
+     let locationApiResponse = null
+     
+
+        try {
+
+
+            {let dateAndTime = locationApiResponse.body.result;
+
+
+                locationApiResponse = await superagentRequest.get(`http://localhost:3010/service/${location}`);
+
+                return callback(false, `In ${location}, it is now ${dateAndTime}`);
+
+
+            }
+
+
+        } catch (error) {
+
+
+            console.log(error);
+
+            console.log(locationApiResponse.body);
+
+
+            return callback(false, `I had a problem finding out the time in ${location}`);
+
+
+        }
+
+    }
 
 }
