@@ -1,9 +1,13 @@
-"use strict"
+"use strict";
 
 
 {const express = require("express");
 
  const service = express();
+
+ const ServiceRegistry = require("./serviceRegistry");
+
+ const serviceRegistry = new ServiceRegistry();
 
 
     {let request = null;
@@ -13,7 +17,7 @@
      let next = null;
 
 
-        service.get("/service/:intent/:port", async function (expressRequest, expressRespond, expressNext) {
+        service.put("/service/:intent/:port", async function (expressRequest, expressRespond, expressNext) {
 
             request = expressRequest;
 
@@ -48,6 +52,9 @@
                                     `[${request.connection.remoteAddress}]` : 
 
                                         request.connection.remoteAddress;
+
+
+            serviceRegistry.add(serviceIntent, serviceIp, servicePort);
 
 
             return new Promise( function executor (resolve, reject) {
