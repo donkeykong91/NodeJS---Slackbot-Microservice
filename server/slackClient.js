@@ -3,7 +3,9 @@
 
 const RtmClient = require('@slack/client').RTMClient;   
 
+
 {let rtm = null;
+
  let nlp = null;
 
 
@@ -19,18 +21,23 @@ const RtmClient = require('@slack/client').RTMClient;
 
         if (message.text.toLowerCase().includes("iris")) {
 
+
             nlp.ask(message.text, function (err, res) {
+
 
                 if(err) {
     
+
                     console.log(err);
     
                     return;
     
+
                 }
     
     
                 try {
+
 
                     if (!res.intent || !res.intent[0] || !res.intent[0].value) {
 
@@ -47,9 +54,11 @@ const RtmClient = require('@slack/client').RTMClient;
 
                         if (error) {
 
+
                             console.log(error.message);
 
                             return;
+
 
                         }
 
@@ -62,39 +71,19 @@ const RtmClient = require('@slack/client').RTMClient;
 
                 } catch(err) {
 
+
                     console.log(err);
 
                     console.log(res);
 
-                    rtm.sendMessage("Sorry, I don't know what you ware talkinga bout", message.channel);
+                    rtm.sendMessage("Sorry, I don't know what you are talking about", message.channel);
                     
+
                 }
 
-
-                if (!res.intent) {
-    
-                    return rtm.sendMessage("Sorry, I don't know what you are talkng about.", message.channel);
-    
-                } else if (res.intent[0].value == "time" && res.location) {
-    
-                    return rtm.sendMessage(`I don't yet know the time in ${res.location[0].value}`, message.channel);
-    
-                } else {
-    
-                    console.log(res);
-    
-                    return rtm.sendMessage("Sorry, I don't know what you are talking about.", message.channel);
-    
-                }
-    
-    
-                rtm.sendMessage("Sorry, I did not understand.", message.channel)
-    
             });
 
-
         }
-
 
     }
 
@@ -122,5 +111,6 @@ const RtmClient = require('@slack/client').RTMClient;
 
 
     module.exports.addAuthenticatedHandler = addAuthenticatedHandler;
+
 
 }
