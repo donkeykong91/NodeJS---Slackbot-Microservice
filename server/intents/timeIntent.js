@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 
 const superagentRequest = require("superagent");
@@ -24,7 +24,7 @@ module.exports.process = async function process(intentData, callback) {
     {const location = intentData.location[0].value;
 
      let locationApiResponse = null
-     
+
 
         try {
 
