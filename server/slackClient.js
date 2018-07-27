@@ -69,7 +69,7 @@ const RtmClient = require('@slack/client').RTMClient;
                     });
 
 
-                } catch(err) {
+                } catch (err) {
 
 
                     console.log(err);
@@ -97,6 +97,7 @@ const RtmClient = require('@slack/client').RTMClient;
 
     module.exports.init = function slackClient(token, logLevel, nlpClient) {
 
+
         rtm = new RtmClient(token, {logLevel: logLevel});
 
         nlp = nlpClient;
@@ -106,6 +107,7 @@ const RtmClient = require('@slack/client').RTMClient;
         rtm.on("message", handleOnMessage);
 
         return rtm;
+
 
     }
 
