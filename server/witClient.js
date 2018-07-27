@@ -13,10 +13,12 @@ function handleWitResponse (res) {
 
 module.exports = function witClient (token) {
 
+
     const ask = function ask(message, callback) {
 
 
         request.get("https://api.wit.ai/message")
+
 
             .set("Authorization", "Bearer " + token)
 
@@ -44,6 +46,7 @@ module.exports = function witClient (token) {
                 const witResponse = handleWitResponse(res.body);
 
                 return callback(null, witResponse);
+                
 
             });
 
