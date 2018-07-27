@@ -30,7 +30,9 @@ class ServiceRegistry {
 
                 this._services[key].ip = ip;
 
-                this._services[key].intent = port;
+                this._services[key].port = port;
+
+                this._services[key].intent = intent;
 
 
                 console.log(`Added service for intent ${intent} on ${ip}:${port}`);
@@ -49,7 +51,7 @@ class ServiceRegistry {
 
             this._cleanup();
 
-            
+
         }
 
     }
