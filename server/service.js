@@ -10,6 +10,9 @@
  const serviceRegistry = new ServiceRegistry();
 
 
+    service.set("serviceRegistry", serviceRegistry);
+
+
     {let request = null;
 
      let respond = null;
@@ -18,6 +21,7 @@
 
 
         service.put("/service/:intent/:port", async function (expressRequest, expressRespond, expressNext) {
+
 
             request = expressRequest;
 
