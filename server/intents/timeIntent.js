@@ -33,19 +33,18 @@ module.exports.process = async function process(intentData, registry, callback) 
 
         {const location = intentData.location[0].value;
 
-         let locationApiResponse = null
+         let apiResponse = null
 
 
             try {
 
 
-                {let dateAndTime = locationApiResponse.body.result;
+                apiResponse = await superagentRequest.get(`http://${service.ip}:${service.port}/service/${location}`);
 
 
-                    locationApiResponse = await superagentRequest.get(`http://${service.ip}:${service.port}/service/${location}`);
+                {let dateAndTime = apiResponse.body.result;
 
                     return callback(false, `In ${location}, it is now ${dateAndTime}`);
-
 
                 }
 
